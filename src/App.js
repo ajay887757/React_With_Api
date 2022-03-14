@@ -2,13 +2,15 @@ import Login from './components/login';
 import React, {Component} from 'react';
 import Home  from './components/home';
 import Signup from './components/Signup';
+import { BrowserRouter as Router,Switch } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 
 function App() {
-  return <Signup />;
+  // return <Signup />;
   return <Login />;
   // return <Home />;
+
 }
 
 
