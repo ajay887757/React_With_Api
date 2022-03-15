@@ -1,6 +1,23 @@
 import React from "react";
+import {withRouter} from 'react-router-dom';
+import axios from "axios";
 
 class Home extends React.Component {
+
+  componentDidMount(){
+    this.verifyToken()
+  }
+
+  verifyToken=()=>{
+    let loginData= JSON.parse(localStorage.getItem('login'));
+
+    axios.post("apipath", loginData.token).then(res=>{
+      if(!res.verified){
+        this.props.history.push("/login");
+      }
+    })
+  }
+  
     render() {
         return (
             <div>

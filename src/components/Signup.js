@@ -1,4 +1,5 @@
 import React from "react";
+import {withRouter} from 'react-router-dom';
 
 class Signup extends React.Component {
     constructor(){
@@ -29,6 +30,7 @@ class Signup extends React.Component {
               login:true,
               token:result.token
             }))
+            this.props.history.push("/login");
           })
         })
       }

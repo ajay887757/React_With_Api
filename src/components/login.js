@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router-dom';
 // import { useNavigate } from "react-router-dom"
     
 // const navigate = useNavigate();
@@ -34,9 +35,14 @@ class Login extends Component {
         localStorage.setItem('login',JSON.stringify({
           login:true,
           token:result.token
+          
         }))
+        this.props.history.push("/home");
       })
     })
+  }
+  openSignUpPage=()=>{
+    this.props.history.push("/signup");
   }
     render(){
         return (
@@ -61,7 +67,7 @@ class Login extends Component {
                                             for="rem_me">Remember me</label></div>
                                 </div><button className="btn sign_in_btn" onClick={()=>{this.login()}}>Sign In</button>
                             <div className="submit_request_section">
-                                <a href=""> Don't have an account yet?</a>
+                                <a onClick={this.openSignUpPage}> Don't have an account yet?</a>
                             </div>
                         </div>
                     </div>
