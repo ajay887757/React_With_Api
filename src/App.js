@@ -2,14 +2,30 @@ import Login from './components/login';
 import React, {Component} from 'react';
 import Home  from './components/home';
 import Signup from './components/Signup';
-import { BrowserRouter as Router,Switch } from 'react-router-dom';
+import {Route,Switch,BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
+import Error from './components/ERROR';
 
 function App() {
-  // return <Signup />;
-  return <Login />;
+  // return <Signup / >;
+  // return <Login />;
   // return <Home />;
+  return (
+    <>
+    <Switch>
+      <Route exact path='/' component={Login}/>
+      <Route exact path='/login' component={Login}/>
+      <Route path='/signup' component={Signup}/>
+      <Route path='/home' component={Home}/>
+      <React component={Error} />
+
+    </Switch>
+      {/* <Login />
+      <Signup />
+      <Home /> */}
+    </>
+  )
 
 }
 

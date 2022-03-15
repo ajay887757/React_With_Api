@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Login from './components/login';
+import Signup from './components/Signup';
+import Home  from './components/home';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    // {/* <App /> */}
+    // {/* <Login />
+    // <Signup />
+    // <Home /> */} 
+    <BrowserRouter>
+      <App />
+
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

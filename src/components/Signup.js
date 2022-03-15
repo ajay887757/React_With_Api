@@ -10,6 +10,7 @@ class Signup extends React.Component {
         }
       }
       signup(){
+        if(this.state.password==this.state.password2){
         fetch('http://127.0.0.1:8000/api/user/create/',{
           method: 'POST',
       headers: {
@@ -31,6 +32,10 @@ class Signup extends React.Component {
           })
         })
       }
+      else{
+        alert("Both Password Not Match")
+      }
+    }
     render() {
         return (
             <div>
@@ -53,6 +58,7 @@ class Signup extends React.Component {
                                         <div className="form_controls"><label>Conform Password </label><input type="password" onChange={(event)=>{this.setState({password2:event.target.value})}}
                                              placeholder="Enter Conform Password"></input><span className="login_input_error" ></span></div>
                                         <button className="btn sign_in_btn" onClick={()=>{this.signup()}}>Signup</button>
+                                        
 
 
 

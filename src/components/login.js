@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import { useHistroy } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
     
-// let history=useHistroy();
+// const navigate = useNavigate();
 // history.push('/home')
 class Login extends Component {
     
@@ -27,6 +27,10 @@ class Login extends Component {
     }).then((response)=>{
       response.json().then((result)=>{
         console.warn("result",result);
+        var result1=result["detail"]
+        if (result1 !=null ){
+          alert(result1)
+        }
         localStorage.setItem('login',JSON.stringify({
           login:true,
           token:result.token
