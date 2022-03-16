@@ -1,6 +1,52 @@
 import React from "react";
+import {withRouter} from 'react-router-dom';
+import axios from "axios";
 
 class Home extends React.Component {
+
+  componentDidMount(){
+    this.verifyToken()
+  }
+
+  verifyToken=()=>{
+    let loginData= JSON.parse(localStorage.getItem('login'));
+    
+
+    axios.post("http://127.0.0.1:8000/api/token/verify/",{
+      method:'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token:loginData.token.access
+      })
+    
+     
+    })
+    .then(res=>{
+      if(!res.verified){
+        this.props.history.push("/login");
+      }
+    })
+  }
+
+  logout(){
+    let loginData= JSON.parse(localStorage.getItem('login'));
+    fetch('http://127.0.0.1:8000/api/user/logout/blacklist/',{
+      method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  
+  body: JSON.stringify({
+    refresh:loginData.token.access
+  })
+})
+  this.props.history.push("/login");
+}
+  
     render() {
         return (
             <div>
@@ -37,7 +83,7 @@ class Home extends React.Component {
                 <div className="main_heading">
                   <h3> Ajay Kumar Mandal </h3>
                 </div>
-                <div className="main-heading-right"><button className="sign">sign out</button></div>
+                <div className="main-heading-right"><button className="sign" onClick={()=>{this.logout()}}>sign out</button></div>
               </div>
               <div className="main_sub_heading">
                 <p>Hello Ajay</p>

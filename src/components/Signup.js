@@ -1,5 +1,5 @@
-import React,{useState} from "react";
-import { AxiosInstance } from "axios";
+import React from "react";
+import {withRouter} from 'react-router-dom';
 
 class Signup extends React.Component {
     constructor(){
@@ -26,10 +26,22 @@ class Signup extends React.Component {
         }).then((response)=>{
           response.json().then((result)=>{
             console.warn("result",result);
+
+             const result1=result["user_name"]
+
+            if(this.state.user_name==null || this.state.password==null || this.state.password2==null ){
+          this.props.history.push("/signup");
+        }
+        else if(result1!=null){
+          this.props.history.push("/login");
+
+        }
+        
             localStorage.setItem('Signup',JSON.stringify({
               login:true,
               token:result.token
             }))
+            // this.props.history.push("/login");
           })
         })
       }
